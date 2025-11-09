@@ -33,9 +33,9 @@ importers:
         specifier: ^16.2.6
         version: 16.2.6
 
-  common: {}
+  packages/common: {}
 
-  frontend:
+  packages/frontend:
     dependencies:
       react:
         specifier: ^19.2.0
