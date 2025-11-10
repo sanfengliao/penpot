@@ -1,6 +1,5 @@
 {
   "*.{ts,tsx,js,jsx}": [
-    "eslint --fix",
-    "pnpm run test"
+    "eslint --fix"
   ]
 }

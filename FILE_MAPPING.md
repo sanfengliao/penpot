@@ -6,25 +6,27 @@
 
 #### 1.1 几何和数学工具
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `common/src/app/common/geom/point.cljs` | 100 | point.ts | `frontend/src/app/lib/geom/point.ts` | ⬜ 未开始 |
-| 🔴 高 | `common/src/app/common/geom/matrix.cljs` | 200 | matrix.ts | `frontend/src/app/lib/geom/matrix.ts` | ⬜ 未开始 |
-| 🔴 高 | `common/src/app/common/geom/transform.cljs` | 150 | transform.ts | `frontend/src/app/lib/geom/transform.ts` | ⬜ 未开始 |
-| 🔴 高 | `common/src/app/common/geom/shapes/*.cljs` | 500+ | shapes/ | `frontend/src/app/lib/geom/shapes/` | ⬜ 未开始 |
-| 🟡 中 | `common/src/app/common/math.cljs` | 300 | math.ts | `frontend/src/app/lib/math.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                             | 行数 | 目标文件     | 目标路径                                | 迁移状态  |
+| ------ | -------------------------------------------------- | ---- | ------------ | --------------------------------------- | --------- |
+| 🔴 高  | `penpot/common/src/app/common/geom/point.cljs`     | 100  | point.ts     | `packages/common/src/geom/point.ts`     | ✅ 已迁移 |
+| 🔴 高  | `penpot/common/src/app/common/geom/matrix.cljs`    | 200  | matrix.ts    | `packages/common/src/geom/matrix.ts`    | ✅ 已迁移 |
+| 🔴 高  | `penpot/common/src/app/common/geom/transform.cljs` | 150  | transform.ts | `packages/common/src/geom/transform.ts` | ⬜ 未开始 |
+| 🔴 高  | `penpot/common/src/app/common/geom/shapes/*.cljs`  | 500+ | shapes/      | `packages/common/src/geom/shapes/`      | ⬜ 未开始 |
+| 🟡 中  | `penpot/common/src/app/common/math.cljs`           | 300  | math.ts      | `packages/common/src/math.ts`           | ✅ 已迁移 |
 
 **任务清单**:
+
 ```
-✓ 创建 frontend/src/app/lib/geom/ 目录
+✓ 创建 packages/common/src/geom/ 目录
 ✓ 迁移 Point 接口和方法
-✓ 迁移 Matrix 接口和方法  
+✓ 迁移 Matrix 接口和方法
 ✓ 迁移 Transform 接口和方法
 ✓ 迁移几何形状计算
 ✓ 编写单元测试
 ```
 
 **代码示例 - 类型转换**:
+
 ```clojure
 ;; ClojureScript
 (defn make-point [x y] {:x x :y y})
@@ -52,13 +54,14 @@ export const pointDistance = (p1: Point, p2: Point): number => {
 
 #### 1.2 字符串和格式化工具
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🟡 中 | `frontend/src/app/main/utils/format.cljs` | 200 | format.ts | `frontend/src/app/utils/format.ts` | ⬜ 未开始 |
-| 🟡 中 | `frontend/src/app/main/utils/parse.cljs` | 150 | parse.ts | `frontend/src/app/utils/parse.ts` | ⬜ 未开始 |
-| 🟡 中 | `frontend/src/app/main/utils/string.cljs` | 100 | string.ts | `frontend/src/app/utils/string.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                           | 行数 | 目标文件  | 目标路径                                | 迁移状态  |
+| ------ | ------------------------------------------------ | ---- | --------- | --------------------------------------- | --------- |
+| 🟡 中  | `penpot/frontend/src/app/main/utils/format.cljs` | 200  | format.ts | `packages/frontend/src/utils/format.ts` | ⬜ 未开始 |
+| 🟡 中  | `penpot/frontend/src/app/main/utils/parse.cljs`  | 150  | parse.ts  | `packages/frontend/src/utils/parse.ts`  | ⬜ 未开始 |
+| 🟡 中  | `penpot/frontend/src/app/main/utils/string.cljs` | 100  | string.ts | `packages/frontend/src/utils/string.ts` | ⬜ 未开始 |
 
 **核心函数**:
+
 - formatNumber
 - formatDate
 - formatBytes
@@ -71,11 +74,12 @@ export const pointDistance = (p1: Point, p2: Point): number => {
 
 #### 1.3 DOM 操作工具
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🟡 中 | `frontend/src/app/main/utils/dom.cljs` | 250 | dom.ts | `frontend/src/app/utils/dom.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                        | 行数 | 目标文件 | 目标路径                             | 迁移状态  |
+| ------ | --------------------------------------------- | ---- | -------- | ------------------------------------ | --------- |
+| 🟡 中  | `penpot/frontend/src/app/main/utils/dom.cljs` | 250  | dom.ts   | `packages/frontend/src/utils/dom.ts` | ⬜ 未开始 |
 
 **核心函数**:
+
 - addClass
 - removeClass
 - hasClass
@@ -89,9 +93,9 @@ export const pointDistance = (p1: Point, p2: Point): number => {
 
 #### 1.4 UUID 和通用工具
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🟡 中 | `common/src/app/common/uuid.cljs` | 50 | uuid.ts | `frontend/src/app/utils/uuid.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                   | 行数 | 目标文件 | 目标路径                              | 迁移状态  |
+| ------ | ---------------------------------------- | ---- | -------- | ------------------------------------- | --------- |
+| 🟡 中  | `penpot/common/src/app/common/uuid.cljs` | 50   | uuid.ts  | `packages/frontend/src/utils/uuid.ts` | ⬜ 未开始 |
 
 ---
 
@@ -99,13 +103,14 @@ export const pointDistance = (p1: Point, p2: Point): number => {
 
 #### 2.1 Shape 和几何类型
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `common/src/app/common/types/shape/*.cljs` | 1000+ | shape.ts | `frontend/src/app/types/shape.ts` | ⬜ 未开始 |
-| 🔴 高 | `common/src/app/common/types/path/*.cljs` | 300 | path.ts | `frontend/src/app/types/path.ts` | ⬜ 未开始 |
-| 🔴 高 | `common/src/app/common/types/fills/*.cljs` | 200 | fill.ts | `frontend/src/app/types/fill.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                            | 行数  | 目标文件 | 目标路径                               | 迁移状态  |
+| ------ | ------------------------------------------------- | ----- | -------- | -------------------------------------- | --------- |
+| 🔴 高  | `penpot/common/src/app/common/types/shape/*.cljs` | 1000+ | shape.ts | `packages/frontend/src/types/shape.ts` | ⬜ 未开始 |
+| 🔴 高  | `penpot/common/src/app/common/types/path/*.cljs`  | 300   | path.ts  | `packages/frontend/src/types/path.ts`  | ⬜ 未开始 |
+| 🔴 高  | `penpot/common/src/app/common/types/fills/*.cljs` | 200   | fill.ts  | `packages/frontend/src/types/fill.ts`  | ⬜ 未开始 |
 
 **关键类型**:
+
 ```typescript
 // Shape 类型
 export interface BaseShape {
@@ -125,7 +130,7 @@ export interface BaseShape {
   blendMode: BlendMode;
 }
 
-export type Shape = 
+export type Shape =
   | RectShape
   | CircleShape
   | FrameShape
@@ -151,12 +156,13 @@ export interface PathData {
 
 #### 2.2 API 和认证类型
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `frontend/src/app/main/data/auth.cljs` | 300 | auth.ts | `frontend/src/app/types/auth.ts` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/data/common.cljs` | 400 | common.ts | `frontend/src/app/types/common.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                          | 行数 | 目标文件  | 目标路径                                | 迁移状态  |
+| ------ | ----------------------------------------------- | ---- | --------- | --------------------------------------- | --------- |
+| 🔴 高  | `penpot/frontend/src/app/main/data/auth.cljs`   | 300  | auth.ts   | `packages/frontend/src/types/auth.ts`   | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/data/common.cljs` | 400  | common.ts | `packages/frontend/src/types/common.ts` | ⬜ 未开始 |
 
 **关键类型**:
+
 ```typescript
 // Auth Types
 export interface User {
@@ -215,9 +221,9 @@ export interface Page {
 
 #### 2.3 Schema 和验证类型
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🟡 中 | `common/src/app/common/schema/*.cljs` | 500 | schema.ts | `frontend/src/app/lib/schema.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                       | 行数 | 目标文件  | 目标路径                        | 迁移状态  |
+| ------ | -------------------------------------------- | ---- | --------- | ------------------------------- | --------- |
+| 🟡 中  | `penpot/common/src/app/common/schema/*.cljs` | 500  | schema.ts | `packages/common/src/schema.ts` | ⬜ 未开始 |
 
 ---
 
@@ -225,11 +231,12 @@ export interface Page {
 
 #### 3.1 数据操作库
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🟡 中 | `common/src/app/common/data/*.cljs` | 400 | data.ts | `frontend/src/app/lib/data/index.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                     | 行数 | 目标文件 | 目标路径                            | 迁移状态  |
+| ------ | ------------------------------------------ | ---- | -------- | ----------------------------------- | --------- |
+| 🟡 中  | `penpot/common/src/app/common/data/*.cljs` | 400  | data.ts  | `packages/common/src/data/index.ts` | ⬜ 未开始 |
 
 **核心函数**:
+
 - insertAt
 - removeAt
 - replaceAt
@@ -244,12 +251,13 @@ export interface Page {
 
 #### 3.2 SVG 和路径库
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🟡 中 | `common/src/app/common/svg/*.cljs` | 600 | svg.ts | `frontend/src/app/lib/svg/index.ts` | ⬜ 未开始 |
-| 🟡 中 | `common/src/app/common/svg/path/*.cljs` | 300 | path.ts | `frontend/src/app/lib/svg/path.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                         | 行数 | 目标文件 | 目标路径                           | 迁移状态  |
+| ------ | ---------------------------------------------- | ---- | -------- | ---------------------------------- | --------- |
+| 🟡 中  | `penpot/common/src/app/common/svg/*.cljs`      | 600  | svg.ts   | `packages/common/src/svg/index.ts` | ⬜ 未开始 |
+| 🟡 中  | `penpot/common/src/app/common/svg/path/*.cljs` | 300  | path.ts  | `packages/common/src/svg/path.ts`  | ⬜ 未开始 |
 
 **核心功能**:
+
 - SVG 路径解析和生成
 - Path 命令转换
 - 贝塞尔曲线计算
@@ -262,21 +270,21 @@ export interface Page {
 
 #### 4.1 Store 和中间件
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | N/A | N/A | store.ts | `frontend/src/app/store/index.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | persistence.ts | `frontend/src/app/store/middleware/persistence.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | logging.ts | `frontend/src/app/store/middleware/logging.ts` | ⬜ 未开始 |
+| 优先级 | 源文件 | 行数 | 目标文件       | 目标路径                                                | 迁移状态  |
+| ------ | ------ | ---- | -------------- | ------------------------------------------------------- | --------- |
+| 🔴 高  | N/A    | N/A  | store.ts       | `packages/frontend/src/store/index.ts`                  | ⬜ 未开始 |
+| 🔴 高  | N/A    | N/A  | persistence.ts | `packages/frontend/src/store/middleware/persistence.ts` | ⬜ 未开始 |
+| 🔴 高  | N/A    | N/A  | logging.ts     | `packages/frontend/src/store/middleware/logging.ts`     | ⬜ 未开始 |
 
 #### 4.2 状态切片
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `frontend/src/app/main/data/auth.cljs` | 300 | auth.ts | `frontend/src/app/store/slices/auth.ts` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/data/common.cljs` | 400 | common.ts | `frontend/src/app/store/slices/common.ts` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/data/modal.cljs` | 100 | modal.ts | `frontend/src/app/store/slices/modal.ts` | ⬜ 未开始 |
-| 🟡 中 | `frontend/src/app/main/data/notifications.cljs` | 200 | notifications.ts | `frontend/src/app/store/slices/notifications.ts` | ⬜ 未开始 |
-| 🟡 中 | `frontend/src/app/main/data/dashboard.cljs` | 300 | dashboard.ts | `frontend/src/app/store/slices/dashboard.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                                 | 行数 | 目标文件         | 目标路径                                              | 迁移状态  |
+| ------ | ------------------------------------------------------ | ---- | ---------------- | ----------------------------------------------------- | --------- |
+| 🔴 高  | `penpot/frontend/src/app/main/data/auth.cljs`          | 300  | auth.ts          | `packages/frontend/src/store/slices/auth.ts`          | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/data/common.cljs`        | 400  | common.ts        | `packages/frontend/src/store/slices/common.ts`        | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/data/modal.cljs`         | 100  | modal.ts         | `packages/frontend/src/store/slices/modal.ts`         | ⬜ 未开始 |
+| 🟡 中  | `penpot/frontend/src/app/main/data/notifications.cljs` | 200  | notifications.ts | `packages/frontend/src/store/slices/notifications.ts` | ⬜ 未开始 |
+| 🟡 中  | `penpot/frontend/src/app/main/data/dashboard.cljs`     | 300  | dashboard.ts     | `packages/frontend/src/store/slices/dashboard.ts`     | ⬜ 未开始 |
 
 **关键状态片段详细清单**:
 
@@ -321,11 +329,11 @@ dashboard.ts:
 
 #### 4.3 Selectors
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | N/A | N/A | auth.ts | `frontend/src/app/store/selectors/auth.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | common.ts | `frontend/src/app/store/selectors/common.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | workspace.ts | `frontend/src/app/store/selectors/workspace.ts` | ⬜ 未开始 |
+| 优先级 | 源文件 | 行数 | 目标文件     | 目标路径                                             | 迁移状态  |
+| ------ | ------ | ---- | ------------ | ---------------------------------------------------- | --------- |
+| 🔴 高  | N/A    | N/A  | auth.ts      | `packages/frontend/src/store/selectors/auth.ts`      | ⬜ 未开始 |
+| 🔴 高  | N/A    | N/A  | common.ts    | `packages/frontend/src/store/selectors/common.ts`    | ⬜ 未开始 |
+| 🔴 高  | N/A    | N/A  | workspace.ts | `packages/frontend/src/store/selectors/workspace.ts` | ⬜ 未开始 |
 
 ---
 
@@ -333,15 +341,16 @@ dashboard.ts:
 
 #### 5.1 基础组件
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `frontend/src/app/main/ui/ds/buttons/button.cljs` | 100 | Button.tsx | `frontend/src/app/ui/components/Button.tsx` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/ui/ds/controls/input.cljs` | 80 | Input.tsx | `frontend/src/app/ui/components/Input.tsx` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/ui/ds/controls/select.cljs` | 120 | Select.tsx | `frontend/src/app/ui/components/Select.tsx` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/ui/ds/controls/checkbox.cljs` | 60 | Checkbox.tsx | `frontend/src/app/ui/components/Checkbox.tsx` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/ui/ds/controls/radio.cljs` | 60 | Radio.tsx | `frontend/src/app/ui/components/Radio.tsx` | ⬜ 未开始 |
+| 优先级 | 源文件                                                      | 行数 | 目标文件     | 目标路径                                        | 迁移状态  |
+| ------ | ----------------------------------------------------------- | ---- | ------------ | ----------------------------------------------- | --------- |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/ds/buttons/button.cljs`    | 100  | Button.tsx   | `packages/frontend/src/components/Button.tsx`   | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/ds/controls/input.cljs`    | 80   | Input.tsx    | `packages/frontend/src/components/Input.tsx`    | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/ds/controls/select.cljs`   | 120  | Select.tsx   | `packages/frontend/src/components/Select.tsx`   | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/ds/controls/checkbox.cljs` | 60   | Checkbox.tsx | `packages/frontend/src/components/Checkbox.tsx` | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/ds/controls/radio.cljs`    | 60   | Radio.tsx    | `packages/frontend/src/components/Radio.tsx`    | ⬜ 未开始 |
 
 **表单组件**:
+
 - TextInput
 - TextArea
 - Select
@@ -352,6 +361,7 @@ dashboard.ts:
 - ColorPicker
 
 **UI 组件**:
+
 - Button (variations: primary, secondary, danger)
 - Badge
 - Tag
@@ -362,11 +372,12 @@ dashboard.ts:
 
 #### 5.2 容器和对话框组件
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `frontend/src/app/main/ui/ds/layout/*.cljs` | 200 | layout/ | `frontend/src/app/ui/components/layout/` | ⬜ 未开始 |
+| 优先级 | 源文件                                             | 行数 | 目标文件 | 目标路径                                   | 迁移状态  |
+| ------ | -------------------------------------------------- | ---- | -------- | ------------------------------------------ | --------- |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/ds/layout/*.cljs` | 200  | layout/  | `packages/frontend/src/components/layout/` | ⬜ 未开始 |
 
 **布局组件**:
+
 - Flex
 - Grid
 - Stack (HStack, VStack)
@@ -378,6 +389,7 @@ dashboard.ts:
 - Panel
 
 **对话框**:
+
 - Dialog
 - Modal
 - Alert
@@ -388,12 +400,12 @@ dashboard.ts:
 
 #### 5.3 页面组件
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `frontend/src/app/main/ui/auth/login.cljs` | 200 | LoginPage.tsx | `frontend/src/app/ui/pages/auth/LoginPage.tsx` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/ui/auth/register.cljs` | 200 | RegisterPage.tsx | `frontend/src/app/ui/pages/auth/RegisterPage.tsx` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/ui/dashboard/dashboard.cljs` | 300 | DashboardPage.tsx | `frontend/src/app/ui/pages/dashboard/DashboardPage.tsx` | ⬜ 未开始 |
-| 🔴 高 | `frontend/src/app/main/ui/workspace/*.cljs` | 2000+ | Workspace/ | `frontend/src/app/ui/pages/workspace/` | ⬜ 未开始 |
+| 优先级 | 源文件                                                     | 行数  | 目标文件          | 目标路径                                                  | 迁移状态  |
+| ------ | ---------------------------------------------------------- | ----- | ----------------- | --------------------------------------------------------- | --------- |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/auth/login.cljs`          | 200   | LoginPage.tsx     | `packages/frontend/src/pages/auth/LoginPage.tsx`          | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/auth/register.cljs`       | 200   | RegisterPage.tsx  | `packages/frontend/src/pages/auth/RegisterPage.tsx`       | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/dashboard/dashboard.cljs` | 300   | DashboardPage.tsx | `packages/frontend/src/pages/dashboard/DashboardPage.tsx` | ⬜ 未开始 |
+| 🔴 高  | `penpot/frontend/src/app/main/ui/workspace/*.cljs`         | 2000+ | Workspace/        | `packages/frontend/src/pages/workspace/`                  | ⬜ 未开始 |
 
 **页面细节**:
 
@@ -465,11 +477,12 @@ settings/
 
 #### 6.1 API 客户端
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `frontend/src/app/main/repo.cljs` | 300 | client.ts | `frontend/src/app/services/api/client.ts` | ⬜ 未开始 |
+| 优先级 | 源文件                                   | 行数 | 目标文件  | 目标路径                                       | 迁移状态  |
+| ------ | ---------------------------------------- | ---- | --------- | ---------------------------------------------- | --------- |
+| 🔴 高  | `penpot/frontend/src/app/main/repo.cljs` | 300  | client.ts | `packages/frontend/src/services/api/client.ts` | ⬜ 未开始 |
 
 **API 客户端详细**:
+
 ```typescript
 // API 端点配置
 export const API_ENDPOINTS = {
@@ -479,25 +492,25 @@ export const API_ENDPOINTS = {
   REGISTER: '/auth/register',
   REFRESH_TOKEN: '/auth/refresh',
   VERIFY_EMAIL: '/auth/verify-email',
-  
+
   // Projects
   GET_PROJECTS: '/projects',
   CREATE_PROJECT: '/projects',
   UPDATE_PROJECT: '/projects/:id',
   DELETE_PROJECT: '/projects/:id',
-  
+
   // Files
   GET_FILES: '/projects/:id/files',
   CREATE_FILE: '/projects/:id/files',
   UPDATE_FILE: '/files/:id',
   DELETE_FILE: '/files/:id',
-  
+
   // Pages
   GET_PAGES: '/files/:id/pages',
   CREATE_PAGE: '/files/:id/pages',
   UPDATE_PAGE: '/pages/:id',
   DELETE_PAGE: '/pages/:id',
-  
+
   // Shapes
   GET_SHAPES: '/pages/:id/shapes',
   CREATE_SHAPE: '/pages/:id/shapes',
@@ -508,12 +521,12 @@ export const API_ENDPOINTS = {
 
 #### 6.2 Service 类
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | N/A | N/A | auth.ts | `frontend/src/app/services/auth.service.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | project.ts | `frontend/src/app/services/project.service.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | file.ts | `frontend/src/app/services/file.service.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | workspace.ts | `frontend/src/app/services/workspace.service.ts` | ⬜ 未开始 |
+| 优先级 | 源文件 | 行数 | 目标文件     | 目标路径                                              | 迁移状态  |
+| ------ | ------ | ---- | ------------ | ----------------------------------------------------- | --------- |
+| 🔴 高  | N/A    | N/A  | auth.ts      | `packages/frontend/src/services/auth.service.ts`      | ⬜ 未开始 |
+| 🔴 高  | N/A    | N/A  | project.ts   | `packages/frontend/src/services/project.service.ts`   | ⬜ 未开始 |
+| 🔴 高  | N/A    | N/A  | file.ts      | `packages/frontend/src/services/file.service.ts`      | ⬜ 未开始 |
+| 🔴 高  | N/A    | N/A  | workspace.ts | `packages/frontend/src/services/workspace.service.ts` | ⬜ 未开始 |
 
 **Service 类方法清单**:
 
@@ -566,39 +579,40 @@ export class WorkspaceService {
 
 #### 6.3 WebSocket 服务 (可选)
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🟢 低 | N/A | N/A | websocket.ts | `frontend/src/app/services/websocket.service.ts` | ⬜ 未开始 |
-| 🟢 低 | N/A | N/A | collaboration.ts | `frontend/src/app/services/collaboration.service.ts` | ⬜ 未开始 |
+| 优先级 | 源文件 | 行数 | 目标文件         | 目标路径                                                  | 迁移状态  |
+| ------ | ------ | ---- | ---------------- | --------------------------------------------------------- | --------- |
+| 🟢 低  | N/A    | N/A  | websocket.ts     | `packages/frontend/src/services/websocket.service.ts`     | ⬜ 未开始 |
+| 🟢 低  | N/A    | N/A  | collaboration.ts | `packages/frontend/src/services/collaboration.service.ts` | ⬜ 未开始 |
 
 ---
 
 ### 第七阶段：Hooks 迁移 (第 8 周)
 
-| 优先级 | Hook 名称 | 源文件 | 目标文件 | 目标路径 | 行数 | 迁移状态 |
-|------|---------|------|---------|---------|------|---------|
-| 🔴 高 | useAuth | N/A | useAuth.ts | `frontend/src/app/ui/hooks/useAuth.ts` | 50 | ⬜ 未开始 |
-| 🔴 高 | useWorkspace | N/A | useWorkspace.ts | `frontend/src/app/ui/hooks/useWorkspace.ts` | 80 | ⬜ 未开始 |
-| 🔴 高 | useSelection | N/A | useSelection.ts | `frontend/src/app/ui/hooks/useSelection.ts` | 60 | ⬜ 未开始 |
-| 🔴 高 | useCanvas | N/A | useCanvas.ts | `frontend/src/app/ui/hooks/useCanvas.ts` | 100 | ⬜ 未开始 |
-| 🟡 中 | useModal | N/A | useModal.ts | `frontend/src/app/ui/hooks/useModal.ts` | 50 | ⬜ 未开始 |
-| 🟡 中 | useTheme | N/A | useTheme.ts | `frontend/src/app/ui/hooks/useTheme.ts` | 40 | ⬜ 未开始 |
-| 🟡 中 | useLocalStorage | N/A | useLocalStorage.ts | `frontend/src/app/ui/hooks/useLocalStorage.ts` | 40 | ⬜ 未开始 |
-| 🟡 中 | useAsync | N/A | useAsync.ts | `frontend/src/app/ui/hooks/useAsync.ts` | 60 | ⬜ 未开始 |
-| 🟢 低 | usePrevious | N/A | usePrevious.ts | `frontend/src/app/ui/hooks/usePrevious.ts` | 20 | ⬜ 未开始 |
-| 🟢 低 | useClickOutside | N/A | useClickOutside.ts | `frontend/src/app/ui/hooks/useClickOutside.ts` | 35 | ⬜ 未开始 |
+| 优先级 | Hook 名称       | 源文件 | 目标文件           | 目标路径                                         | 行数 | 迁移状态  |
+| ------ | --------------- | ------ | ------------------ | ------------------------------------------------ | ---- | --------- |
+| 🔴 高  | useAuth         | N/A    | useAuth.ts         | `packages/frontend/src/hooks/useAuth.ts`         | 50   | ⬜ 未开始 |
+| 🔴 高  | useWorkspace    | N/A    | useWorkspace.ts    | `packages/frontend/src/hooks/useWorkspace.ts`    | 80   | ⬜ 未开始 |
+| 🔴 高  | useSelection    | N/A    | useSelection.ts    | `packages/frontend/src/hooks/useSelection.ts`    | 60   | ⬜ 未开始 |
+| 🔴 高  | useCanvas       | N/A    | useCanvas.ts       | `packages/frontend/src/hooks/useCanvas.ts`       | 100  | ⬜ 未开始 |
+| 🟡 中  | useModal        | N/A    | useModal.ts        | `packages/frontend/src/hooks/useModal.ts`        | 50   | ⬜ 未开始 |
+| 🟡 中  | useTheme        | N/A    | useTheme.ts        | `packages/frontend/src/hooks/useTheme.ts`        | 40   | ⬜ 未开始 |
+| 🟡 中  | useLocalStorage | N/A    | useLocalStorage.ts | `packages/frontend/src/hooks/useLocalStorage.ts` | 40   | ⬜ 未开始 |
+| 🟡 中  | useAsync        | N/A    | useAsync.ts        | `packages/frontend/src/hooks/useAsync.ts`        | 60   | ⬜ 未开始 |
+| 🟢 低  | usePrevious     | N/A    | usePrevious.ts     | `packages/frontend/src/hooks/usePrevious.ts`     | 20   | ⬜ 未开始 |
+| 🟢 低  | useClickOutside | N/A    | useClickOutside.ts | `packages/frontend/src/hooks/useClickOutside.ts` | 35   | ⬜ 未开始 |
 
 ---
 
 ### 第八阶段：路由和集成 (第 9 周)
 
-| 优先级 | 源文件 | 行数 | 目标文件 | 目标路径 | 迁移状态 |
-|------|------|------|---------|---------|---------|
-| 🔴 高 | `frontend/src/app/main/router.cljs` | 150 | routes.ts | `frontend/src/app/routes/index.ts` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | Router.tsx | `frontend/src/app/routes/Router.tsx` | ⬜ 未开始 |
-| 🔴 高 | N/A | N/A | PrivateRoute.tsx | `frontend/src/app/routes/PrivateRoute.tsx` | ⬜ 未开始 |
+| 优先级 | 源文件                                     | 行数 | 目标文件         | 目标路径                                        | 迁移状态  |
+| ------ | ------------------------------------------ | ---- | ---------------- | ----------------------------------------------- | --------- |
+| 🔴 高  | `penpot/frontend/src/app/main/router.cljs` | 150  | routes.ts        | `packages/frontend/src/routes/index.ts`         | ⬜ 未开始 |
+| 🔴 高  | N/A                                        | N/A  | Router.tsx       | `packages/frontend/src/routes/Router.tsx`       | ⬜ 未开始 |
+| 🔴 高  | N/A                                        | N/A  | PrivateRoute.tsx | `packages/frontend/src/routes/PrivateRoute.tsx` | ⬜ 未开始 |
 
 **路由配置**:
+
 ```typescript
 export const routes = [
   {
@@ -650,17 +664,18 @@ export const routes = [
 
 #### 9.1 单元测试
 
-| 测试类别 | 文件数 | 目标路径 | 优先级 | 迁移状态 |
-|--------|--------|---------|--------|---------|
-| 工具函数 | 15 | `test/unit/utils/` | 🔴 高 | ⬜ 未开始 |
-| 类型定义 | 5 | `test/unit/types/` | 🟡 中 | ⬜ 未开始 |
-| Store 切片 | 8 | `test/unit/store/` | 🔴 高 | ⬜ 未开始 |
-| Hooks | 10 | `test/unit/hooks/` | 🔴 高 | ⬜ 未开始 |
-| Services | 8 | `test/unit/services/` | 🔴 高 | ⬜ 未开始 |
-| 组件 | 30 | `test/unit/components/` | 🟡 中 | ⬜ 未开始 |
-| **小计** | **76** | | | |
+| 测试类别   | 文件数 | 目标路径                | 优先级 | 迁移状态  |
+| ---------- | ------ | ----------------------- | ------ | --------- |
+| 工具函数   | 15     | `test/unit/utils/`      | 🔴 高  | ⬜ 未开始 |
+| 类型定义   | 5      | `test/unit/types/`      | 🟡 中  | ⬜ 未开始 |
+| Store 切片 | 8      | `test/unit/store/`      | 🔴 高  | ⬜ 未开始 |
+| Hooks      | 10     | `test/unit/hooks/`      | 🔴 高  | ⬜ 未开始 |
+| Services   | 8      | `test/unit/services/`   | 🔴 高  | ⬜ 未开始 |
+| 组件       | 30     | `test/unit/components/` | 🟡 中  | ⬜ 未开始 |
+| **小计**   | **76** |                         |        |           |
 
 **测试文件示例**:
+
 ```
 test/unit/
 ├── utils/
@@ -692,27 +707,28 @@ test/unit/
 
 #### 9.2 集成测试
 
-| 测试场景 | 文件 | 优先级 | 迁移状态 |
-|--------|------|--------|---------|
-| 认证流程 | auth-flow.test.ts | 🔴 高 | ⬜ 未开始 |
-| 仪表板操作 | dashboard-flow.test.ts | 🔴 高 | ⬜ 未开始 |
-| 工作区操作 | workspace-flow.test.ts | 🔴 高 | ⬜ 未开始 |
-| 数据持久化 | persistence.test.ts | 🟡 中 | ⬜ 未开始 |
+| 测试场景   | 文件                   | 优先级 | 迁移状态  |
+| ---------- | ---------------------- | ------ | --------- |
+| 认证流程   | auth-flow.test.ts      | 🔴 高  | ⬜ 未开始 |
+| 仪表板操作 | dashboard-flow.test.ts | 🔴 高  | ⬜ 未开始 |
+| 工作区操作 | workspace-flow.test.ts | 🔴 高  | ⬜ 未开始 |
+| 数据持久化 | persistence.test.ts    | 🟡 中  | ⬜ 未开始 |
 
 #### 9.3 E2E 测试
 
-| 测试场景 | 文件 | 浏览器 | 迁移状态 |
-|--------|------|--------|---------|
-| 完整登录流程 | e2e/auth.spec.ts | Chrome | ⬜ 未开始 |
-| 创建项目 | e2e/project.spec.ts | Chrome | ⬜ 未开始 |
-| 编辑设计 | e2e/workspace.spec.ts | Chrome | ⬜ 未开始 |
-| 导出文件 | e2e/export.spec.ts | Chrome | ⬜ 未开始 |
+| 测试场景     | 文件                  | 浏览器 | 迁移状态  |
+| ------------ | --------------------- | ------ | --------- |
+| 完整登录流程 | e2e/auth.spec.ts      | Chrome | ⬜ 未开始 |
+| 创建项目     | e2e/project.spec.ts   | Chrome | ⬜ 未开始 |
+| 编辑设计     | e2e/workspace.spec.ts | Chrome | ⬜ 未开始 |
+| 导出文件     | e2e/export.spec.ts    | Chrome | ⬜ 未开始 |
 
 ---
 
 ## 📊 统计汇总
 
 ### 文件数统计
+
 ```
 工具函数：          20+ 文件
 类型定义：          10+ 文件
@@ -730,6 +746,7 @@ Hooks：             10+ 文件
 ```
 
 ### 代码行数估计
+
 ```
 工具函数：          2,000 行
 类型定义：          2,000 行
@@ -750,6 +767,7 @@ Hooks：             1,000 行
 ## 🎯 迁移优先级指南
 
 ### 🔴 高优先级 (必须完成)
+
 - 基础工具函数
 - 类型系统
 - Store 和状态管理
@@ -759,6 +777,7 @@ Hooks：             1,000 行
 - 关键 Hooks
 
 ### 🟡 中优先级 (应该完成)
+
 - 仪表板页面
 - 工作区页面
 - 其他 Service
@@ -767,6 +786,7 @@ Hooks：             1,000 行
 - 集成测试
 
 ### 🟢 低优先级 (可以后来完成)
+
 - 高级功能
 - 优化和性能
 - E2E 测试
@@ -775,7 +795,7 @@ Hooks：             1,000 行
 
 ---
 
-**创建日期**: 2024-11-09  
-**最后更新**: 2024-11-09  
-**维护者**: Frontend 迁移团队  
+**创建日期**: 2024-11-09
+**最后更新**: 2024-11-09
+**维护者**: Frontend 迁移团队
 **项目路径**: `/Users/sanfengliao/workspace/penpot-ts`

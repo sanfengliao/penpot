@@ -1,4 +1,8 @@
+import { Point } from '@penpot-ts/common/geom/point'
 import './App.css'
+
+const point = new Point()
+console.log('Point created:', point)
 
 function App() {
   return (
