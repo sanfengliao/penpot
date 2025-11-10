@@ -294,6 +294,144 @@ const isPoint = (obj: unknown): obj is Point => obj && 'x' in obj && 'y' in obj;
 { ...obj, count: obj.count + 1 }
 ```
 
+#### 6. 优先使用成员函数而非静态函数
+在迁移过程中，**优先选择使用成员函数（类方法）而非静态函数**，这样更符合 TypeScript 的面向对象编程风格。
+
+```clojure
+;; Clojure - 函数式方法
+(defn point-distance [p1 p2]
+  (sqrt (+ (pow (- (:x p2) (:x p1)) 2)
+           (pow (- (:y p2) (:y p1)) 2))))
+
+(point-distance p1 p2)
+```
+```typescript
+// ✅ 推荐：使用成员函数（类方法）
+class Point {
+  constructor(public x: number, public y: number) {}
+  
+  distance(other: Point): number {
+    const dx = other.x - this.x;
+    const dy = other.y - this.y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+}
+
+p1.distance(p2)
+
+// ❌ 不推荐：仅使用静态函数
+class Point {
+  constructor(public x: number, public y: number) {}
+  
+  static distance(p1: Point, p2: Point): number {
+    const dx = p2.x - p1.x;
+    const dy = p2.y - p1.y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+}
+
+Point.distance(p1, p2)
+```
+
+#### 7. 保留原始注释并适当扩展
+在迁移代码时，**保留原始英文注释以便对比原实现**，同时**根据需要添加中文或补充注释**来增强可读性。
+
+```clojure
+;; Clojure - 原始注释
+;; Calculate the distance between two points using euclidean formula
+(defn point-distance [p1 p2]
+  (sqrt (+ (pow (- (:x p2) (:x p1)) 2)
+           (pow (- (:y p2) (:y p1)) 2))))
+```
+```typescript
+// ✅ 推荐：保留原注释，同时添加补充说明
+class Point {
+  constructor(public x: number, public y: number) {}
+  
+  /**
+   * Calculate the distance between two points using euclidean formula
+   * 计算当前点与另一点之间的欧几里得距离
+   */
+  distance(other: Point): number {
+    // dx² + dy² = distance²
+    const dx = other.x - this.x;
+    const dy = other.y - this.y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+}
+
+// ❌ 不推荐：删除原注释或只保留中文
+distance(other: Point): number {
+  // 计算距离
+  const dx = other.x - this.x;
+  const dy = other.y - this.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+```
+
+**注释指南**：
+- ✅ 保留所有原始英文注释和文档字符串
+- ✅ 为复杂逻辑添加中文或英文解释
+- ✅ 标记重要的数学公式或算法说明
+- ✅ 解释类型转换或非直观的代码逻辑
+- ❌ 不要删除原始注释
+- ❌ 避免过度注释（不要注释显而易见的代码）
+
+#### 🔥 8. **成员函数一一对应原则 - 绝不自己添加或删除函数**
+
+在迁移过程中，**必须严格一一对应原 ClojureScript 代码中的函数**。绝不自己添加额外的便利方法或删除原有函数。
+
+**规则**：
+- ✅ **精确对应**: 原代码有什么函数，就实现什么函数 - 一个都不能少，也不能多
+- ✅ **名称一致**: 尽量保持与原代码一致的函数名称（适应 camelCase 命名）
+- ✅ **签名一致**: 参数数量和顺序保持一致
+- ✅ **功能一致**: 实现完全相同的业务逻辑
+- ❌ **不要添加**: 即使认为有帮助的便利方法或扩展函数也不要添加
+- ❌ **不要删除**: 即使认为某些函数不常用也要保留
+- ❌ **不要修改**: 不要改变函数的行为、返回值类型或参数数量
+
+**示例**：
+
+```clojure
+;; Clojure - 原始代码
+(defn point-distance [p1 p2] ...)
+(defn point-add [p1 p2] ...)
+(defn point-scale [p scale] ...)
+```
+
+```typescript
+// ✅ 正确：一一对应
+export class Point {
+  static distance(p1: Point, p2: Point): number { ... }
+  static add(p1: Point, p2: Point): Point { ... }
+  static scale(p: Point, scale: number): Point { ... }
+}
+
+// ❌ 错误：自己添加了 midpoint、lerp 等便利函数
+export class Point {
+  static distance(p1: Point, p2: Point): number { ... }
+  static add(p1: Point, p2: Point): Point { ... }
+  static scale(p: Point, scale: number): Point { ... }
+  
+  // 不要添加这些！
+  static midpoint(p1: Point, p2: Point): Point { ... }
+  static lerp(p1: Point, p2: Point, t: number): Point { ... }
+}
+
+// ❌ 错误：删除了某些不常用的函数
+export class Point {
+  static distance(p1: Point, p2: Point): number { ... }
+  static add(p1: Point, p2: Point): Point { ... }
+  // 不要删除 scale！
+}
+```
+
+**实施方式**：
+1. 先完整阅读原 ClojureScript 代码，列出所有函数
+2. 逐一实现每个函数，确保数量相符
+3. 在迁移完成后，对比检查：函数数量和名称是否一致
+4. 更新 `MIGRATION_PROGRESS.md` 时记录函数个数
+
 ## 📋 File Mapping Quick Reference
 
 ### Current Status - Existing Files
@@ -392,6 +530,43 @@ const isPoint = (obj: unknown): obj is Point => obj && 'x' in obj && 'y' in obj;
 - ✅ **Barrel Exports**: Use `index.ts` for re-exports
 - ✅ **Path Aliases**: Use `@/` prefix for imports
 - ✅ **Consistent Naming**: Follow camelCase for variables/functions, PascalCase for types
+
+### 🔥 ESLint & Linting - 优先级说明
+
+**不用过分追求 ESLint 通过** - 迁移完成比完美代码格式更重要！
+
+- ✅ **优先完成迁移工作** - 专注于功能正确性和类型安全
+- ✅ **在提交代码时处理** - Git Hook（pre-commit）会自动处理 ESLint 修复
+- ❌ **不要因为 ESLint 错误阻塞迁移进度**
+- ❌ **不要花过多时间调整代码格式**
+
+**工作流程**：
+1. 编写代码并实现功能 → 优先保证类型安全和逻辑正确
+2. 提交代码时 → Git Hook 自动运行 `eslint --fix`
+3. 无需手动修复大多数格式问题 → 自动处理
+
+**示例**：
+```typescript
+// ✅ 接受：不完美的格式，但功能正确且类型安全
+export const complexFunction = (input: string):number | undefined => {
+  if (input.length > 10) {
+    return parseInt(input, 10)
+  } else {
+    return undefined
+  }
+}
+
+// 提交时 Git Hook 会自动格式化为：
+export const complexFunction = (
+  input: string
+): number | undefined => {
+  if (input.length > 10) {
+    return parseInt(input, 10);
+  } else {
+    return undefined;
+  }
+};
+```
 
 ## 🚀 Working Guidelines
 
